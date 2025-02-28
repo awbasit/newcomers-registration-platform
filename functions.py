@@ -3,29 +3,27 @@ import os
 
 FILEPATH = "Newcommers.csv"
 
-def get_csv():
-    """Reads CSV file and returns data as a list of dictionaries."""
-    if not os.path.exists(FILEPATH):  # Check if the file exists
-        return []
+def update_csv(data_dict):
+    """Appends a new row to the CSV file, ensuring data is saved properly."""
+    file_exists = os.path.exists(FILEPATH)
 
-    with open(FILEPATH, "r", newline='', encoding="utf-8") as file:
-        reader = csv.DictReader(file)
-        return list(reader)
-
-def update_csv(data):
-    """Appends a new row to the CSV file, creating it if necessary."""
-    file_exists = os.path.exists(FILEPATH)  # Check if the file exists before writing
+    fieldnames = ["First Name", "Middle", "Last Name", "Gender", "Marital Status",
+                  "If Married, Date", "Phone Number", "Date of Birth", "Email",
+                  "Date Joined", "Department(s) serving",
+                  "Family Relationship", "Relation First Name", "Relation Middle Name",
+                  "Relation Last Name", "Relation Telephone", "Relation Email", 
+                  "Children Name", "Children Contact", "Children Date of Birth", "Address",
+                  "Area Location", "Occupation", "Education Level", "Institution Attended",
+                  "Certification", "From", "To"]
 
     with open(FILEPATH, "a", newline='', encoding="utf-8") as file:
-        writer = csv.writer(file)
-        
-        # If file doesn't exist, write the header first
-        if not file_exists:
-            writer.writerow(["Name", "Address", "Contact", "Email", 
-                             "Are you a born again Christian?", "Do you want to Church?", 
-                             "How did you hear about us?"])
-        
-        writer.writerow(data)  # Append new entry
+        writer = csv.DictWriter(file, fieldnames=fieldnames)
 
-if __name__ == "__main__":
-    print("Hello")
+        if not file_exists:
+            writer.writeheader()
+
+        # Ensure data_dict only contains expected keys
+        filtered_data = {key: data_dict.get(key, "") for key in fieldnames}
+
+        writer.writerow(filtered_data)  
+        file.flush()  # Force write to disk

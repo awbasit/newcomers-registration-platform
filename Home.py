@@ -4,49 +4,66 @@ import numpy as np
 
 
 st.set_page_config(layout="wide")
+logo_image = 'img/logo.jpg'
+st.logo(logo_image, size='large')
+
 st.title("Newcomers Page")
 
-col1, col2 = st.columns(2)
+st.image("img/ch.jpg")
+# st.image("img/photo2.jpg")
 
+col1, col2 = st.columns(2)
 with col1:
     st.image("img/photo.jpg")
+#     comment="""
+# You are welcome to the family, Grace Impact Ministries. This is the official dwelling of God.
+# I am the founder and overseer. We are delighted to have your details so that we can communicate
+# further.
+# Grace unto you.
+# """
+#     with st.popover("Divine Message From Apostle Constance A. B. Darko"):
+#         st.markdown(comment)
 
 with col2:
-    comment="""
+    st.image("img/photo2.jpg")
+
+comment="""
 You are welcome to the family, Grace Impact Ministries. This is the official dwelling of God.
 I am the founder and overseer. We are delighted to have your details so that we can communicate
 further.
 Grace unto you.
 """
-    st.info(comment)
+with st.popover("Divine Message From Apostle Constance A. B. Darko"):
+    st.markdown(comment)
 
-st.header("New Members")
 
-df = pd.read_csv("Newcommers.csv")
+
+# st.header("New Members")
+
+# df = pd.read_csv("Newcommers.csv")
 
 # Drop empty columns
-df = df.dropna(how="all")
+# df = df.dropna(how="all")
 
 # Split DataFrame into two approximately equal parts
-half = len(df) // 2  # Find the middle index
+# half = len(df) // 2  # Find the middle index
 
-df_col3, df_col4 = np.array_split(df, [half])  # Splitting dynamically
+# df_col3, df_col4 = np.array_split(df, [half])  # Splitting dynamically
 
 # Create two columns
-col3, col4 = st.columns(2)
+# col3, col4 = st.columns(2)
 
 # Function to display records
-def display_records(column, data):
-    with column:
-        for _, row in data.iterrows():
-            st.subheader(row["Name"].title())
-            st.write(row["Address"])
-            st.write(row["Contact"])
-            st.write(row["Email"])
-            st.write(row["Are you a born again Christian?"].title())
-            st.write(row["How did you hear about us?"])
-            st.markdown("---")  # Adds a line separator for better readability
+# def display_records(column, data):
+#     with column:
+#         for _, row in data.iterrows():
+#             st.subheader(f'{row["First Name"]}, {row["Last Name"]}')
+#             st.write(f'Gender: {row["Gender"]}')
+#             st.write(f'Marital Status: {row["Marital Status"]}')
+#             st.write(f'Date of Birth: {row["Date of Birth"]}')
+#             st.write(f'Email Address: {row["Email"]}')
+#             st.markdown("---")  # Adds a line separator for better readability
 
-# Display records evenly
-display_records(col3, df_col3)
-display_records(col4, df_col4)
+# # Display records evenly
+# display_records(col3, df_col3)
+# display_records(col4, df_col4)
