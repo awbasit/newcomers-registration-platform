@@ -5,16 +5,21 @@ import gspread
 from google.oauth2.service_account import Credentials
 import config
 from functions import update_csv
+import json
 
 st.set_page_config(layout="wide")
 
 # Load Google Sheets API credentials
 scope = ["https://spreadsheets.google.com/feeds", "https://www.googleapis.com/auth/drive"]
-creds = Credentials.from_service_account_file("credentials.json", scopes=scope)
+# Load credentials from Streamlit Secrets
+creds_dict = st.secrets["google_credentials"]
+creds = Credentials.from_service_account_info(json.loads(creds_dict))
+
+# Authorize Google Sheets API
 client = gspread.authorize(creds)
 
 # Open Google Sheet (Replace with your actual Google Sheet ID)
-SHEET_ID = config.SHEET_ID
+SHEET_ID = st.secrets["google_credentials"]["SHEET_ID"]
 sheet = client.open_by_key(SHEET_ID).worksheet("Sheet1")
 
 # Load occupations from CSV
