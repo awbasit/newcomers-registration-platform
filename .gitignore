@@ -1,6 +1,5 @@
 venv
 .idea
 credentials.json
-config.py
 registrations.csv
 __pycache__
