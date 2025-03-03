@@ -8,12 +8,12 @@ import json
 st.set_page_config(layout="wide")
 
 # Load Google Sheets API credentials
-scope = ["https://spreadsheets.google.com/feeds", "https://www.googleapis.com/auth/drive"]
+scope = ["https://www.googleapis.com/auth/spreadsheets", "https://www.googleapis.com/auth/drive"]
 # Load credentials from Streamlit Secrets
 creds_dict = st.secrets["google_credentials"]
 
 #streamlit secrets return dictionary so no need to use json.load()
-creds = Credentials.from_service_account_info(creds_dict)
+creds = Credentials.from_service_account_info(creds_dict, scopes=scope)
 
 # Authorize Google Sheets API
 client = gspread.authorize(creds)
