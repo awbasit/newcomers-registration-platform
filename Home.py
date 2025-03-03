@@ -4,8 +4,6 @@ import numpy as np
 
 
 st.set_page_config(layout="wide")
-logo_image = 'img/logo.jpg'
-st.image(logo_image, width=50)
 
 st.title("Newcomers Page")
 
@@ -15,14 +13,7 @@ st.image("img/ch.jpg")
 col1, col2 = st.columns(2)
 with col1:
     st.image("img/photo.jpg")
-#     comment="""
-# You are welcome to the family, Grace Impact Ministries. This is the official dwelling of God.
-# I am the founder and overseer. We are delighted to have your details so that we can communicate
-# further.
-# Grace unto you.
-# """
-#     with st.popover("Divine Message From Apostle Constance A. B. Darko"):
-#         st.markdown(comment)
+    
 
 with col2:
     st.image("img/photo2.jpg")

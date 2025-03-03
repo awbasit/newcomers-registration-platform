@@ -25,10 +25,6 @@ sheet = client.open_by_key(SHEET_ID).worksheet("Sheet1")
 # Load occupations from CSV
 df = pd.read_csv('occupations.csv')
 
-# Streamlit UI
-logo_image = 'img/logo.jpg'
-st.image(logo_image, width=200)
-
 with st.form(key="form"):
     st.subheader("PERSONAL DETAILS")
     fname = st.text_input("First Name")
