@@ -5,7 +5,7 @@ import numpy as np
 
 st.set_page_config(layout="wide")
 logo_image = 'img/logo.jpg'
-st.image(logo_image, width=200)
+st.image(logo_image, width=50)
 
 st.title("Newcomers Page")
 
